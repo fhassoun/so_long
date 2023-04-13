@@ -18,6 +18,7 @@ long int	ft_atoi(const char *str)
 	int			sign;
 	long int	res;
 
+
 	i = 0;
 	sign = 1;
 	res = 0;

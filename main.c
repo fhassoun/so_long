@@ -6,28 +6,29 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:25:01 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/13 12:50:47 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/13 13:46:56 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static mlx_image_t* image;
+// static mlx_image_t* image;
 
 void ft_hook(void* param)
 {
-	mlx_t* mlx = param;
+	sl_t *sl =  param;
+	mlx_t* mlx = sl->mlx;
 
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
 	if (mlx_is_key_down(mlx, MLX_KEY_UP))
-		image->instances[0].y -= 5;
+		sl->img.player ->instances[0].y -= 5;
 	if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
-		image->instances[0].y += 5;
+		sl->img.player ->instances[0].y += 5;
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
-		image->instances[0].x -= 5;
+		sl->img.player ->instances[0].x -= 5;
 	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-		image->instances[0].x += 5;
+		sl->img.player ->instances[0].x += 5;
 }
 
 static void error(void)
@@ -38,39 +39,27 @@ static void error(void)
 
 int main(int argc, const char* argv[])
 {
-	mlx_t* mlx;
+	sl_t sl;
+	
+	//mlx_t* mlx;
 
-	if (!(mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
-	{
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
-	}
+	if (!(sl.mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
+		error();
 	mlx_texture_t* texture = mlx_load_png("./pics/bl-small.png");
-	if (!(image = mlx_texture_to_image(mlx, texture)))
+	if (!(sl.img.player = mlx_texture_to_image(sl.mlx, texture)))
 	{
-		mlx_close_window(mlx);
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
+		mlx_close_window(sl.mlx);
+		error();
 	}
-	if (mlx_image_to_window(mlx, image, 0, 0) == -1)
+	if (mlx_image_to_window(sl.mlx, sl.img.player , 0, 0) == -1)
 	{
-		mlx_close_window(mlx);
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
+		mlx_close_window(sl.mlx);
+		error();
 	}
-	
-	
 
-	
-	// mlx_image_t* img = mlx_texture_to_image(mlx, texture);
-	// if (mlx_image_to_window(mlx, image, 0, 0) < 0)
-	// 	error();
-
-		
-	mlx_loop_hook(mlx, ft_hook, mlx);
-	// mlx_loop_hook(mlx, ft_randomize, mlx);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	mlx_loop_hook(sl.mlx, ft_hook, &sl);
+	mlx_loop(sl.mlx);
+	mlx_terminate(sl.mlx);
 	return (EXIT_SUCCESS);
 }
 
