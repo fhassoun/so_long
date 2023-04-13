@@ -6,7 +6,7 @@
 #    By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 09:45:00 by fhassoun          #+#    #+#              #
-#    Updated: 2023/04/12 09:45:09 by fhassoun         ###   ########.fr        #
+#    Updated: 2023/04/13 12:21:10 by fhassoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ MLX = $(MLX_PATH)/lib$(MLX_NAME).a
 
 CC = cc
 #CFLAGS = -Wall -Wextra -Werror
-LDFLAGS = -L$(LIBFT_PATH) -l$(LIBFT_NAME) -L$(MLX_PATH) -l$(MLX_NAME) -lglfw -ldl -lm -pthread
+#LDFLAGS = -L$(LIBFT_PATH) -l$(LIBFT_NAME) -L$(MLX_PATH) -l$(MLX_NAME) -lglfw -ldl -lm -pthread
+LDFLAGS = -L$(LIBFT_PATH) -l$(LIBFT_NAME) -L$(MLX_PATH) -l$(MLX_NAME) -lglfw -ldl -lm -pthread -L"/opt/homebrew/Cellar/glfw/3.3.8/lib/"
 
 OBJECTS = $(SOURCES:.c=.o)
 
