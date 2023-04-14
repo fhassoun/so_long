@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:31:16 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/13 13:56:38 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/14 10:47:23 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,20 @@
 # define WIDTH 512
 # define HEIGHT 512
 
-typedef struc collect_s 
+typedef struct collect_s 
 {
 	mlx_image_t* collect;
 	int			x_coll;
 	int			y_coll;
-} collects_t
+} collects_t;
 
 typedef struct textures_s
 {
-	mlx_textures_t* empty;
-	mlx_textures_t* wall;
-	mlx_textures_t* collectible;
-	mlx_textures_t* exit;
-	mlx_textures_t* player;
+	mlx_texture_t* empty;
+	mlx_texture_t* wall;
+	mlx_texture_t* collectible;
+	mlx_texture_t* exit;
+	mlx_texture_t* player;
 }	textures_t;
 
 
@@ -56,9 +56,10 @@ typedef struct sl_s
 {
 	mlx_t	*mlx;
 	img_t	img;
+	textures_t textures;
 }	sl_t;
 
-
+void	load_textures(sl_t *sl);
 
 
 #endif

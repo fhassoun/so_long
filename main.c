@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:25:01 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/13 13:46:56 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/14 12:08:28 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,35 @@ void ft_hook(void* param)
 
 static void error(void)
 {
-	puts(mlx_strerror(mlx_errno));
+	ft_printf("&s\n", mlx_strerror(mlx_errno));
 	exit(EXIT_FAILURE);
 }
 
-int main(int argc, const char* argv[])
+void	init_game(sl_t *sl)
+{
+	
+	if (!(sl->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
+		error();
+	if (!(sl->img.player = mlx_texture_to_image(sl->mlx, sl->textures.player)))
+	{
+		mlx_close_window(sl->mlx);
+		error();
+	}
+	if (mlx_image_to_window(sl->mlx, sl->img.player , 0, 0) == -1)
+	{
+		mlx_close_window(sl->mlx);
+		error();
+	}
+}
+
+// int main(int argc, const char* argv[])
+int main(void)
 {
 	sl_t sl;
 	
-	//mlx_t* mlx;
-
-	if (!(sl.mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
-		error();
-	mlx_texture_t* texture = mlx_load_png("./pics/bl-small.png");
-	if (!(sl.img.player = mlx_texture_to_image(sl.mlx, texture)))
-	{
-		mlx_close_window(sl.mlx);
-		error();
-	}
-	if (mlx_image_to_window(sl.mlx, sl.img.player , 0, 0) == -1)
-	{
-		mlx_close_window(sl.mlx);
-		error();
-	}
+	load_textures(&sl);
+	init_game(&sl);
+	
 
 	mlx_loop_hook(sl.mlx, ft_hook, &sl);
 	mlx_loop(sl.mlx);
@@ -63,9 +69,3 @@ int main(int argc, const char* argv[])
 	return (EXIT_SUCCESS);
 }
 
-/* int	main(int ac, char *av[])
-{
-	
-	
-	return (0);
-} */

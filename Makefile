@@ -6,13 +6,14 @@
 #    By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 09:45:00 by fhassoun          #+#    #+#              #
-#    Updated: 2023/04/13 13:28:37 by fhassoun         ###   ########.fr        #
+#    Updated: 2023/04/14 10:48:49 by fhassoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SOURCES = 	main.c 	
+SOURCES = 	main.c 					\
+			images.c
 
 LIBFT_PATH = ./libft
 LIBFT_NAME = ft
@@ -23,7 +24,7 @@ MLX_NAME = mlx42
 MLX = $(MLX_PATH)/lib$(MLX_NAME).a
 
 CC = cc
-#CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 #LDFLAGS for linux
 LDFLAGS = -L$(LIBFT_PATH) -l$(LIBFT_NAME) -L$(MLX_PATH) -l$(MLX_NAME) -lglfw -ldl -lm -pthread
 #LDFLAGS for MacOS
