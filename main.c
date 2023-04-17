@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:25:01 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/17 13:21:31 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/17 14:31:49 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void error(void)
 void	init_game(sl_t *sl)
 {
 	load_textures(sl);
-	if (!(sl->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
+	if (!(sl->mlx = mlx_init(WIDTH, HEIGHT, "Bzzzzzzzzzzzzzzzz!", true)))
 		error();
 	if (!(sl->img.player = mlx_texture_to_image(sl->mlx, sl->textures.player)))
 	{
@@ -60,10 +60,13 @@ int main(int argc, char* argv[])
 	
 	if(argc != 2)
 	{
-		ft_printf("%s\n", "Usage: ./so_long path/to/map");
+		ft_printf("%s\n", "Usage: ./so_long path/to/mapname.ber");
 		return (EXIT_SUCCESS);
 	}
-	sl.map_string = parse_map(argv[1]);
+	parse_map(argv[1], &sl);
+
+
+	
 	init_game(&sl);
 	
 

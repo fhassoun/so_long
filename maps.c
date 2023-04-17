@@ -6,13 +6,13 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:55:15 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/17 13:15:39 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/17 14:27:47 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*parse_map(char *map)
+void	parse_map(char *map, sl_t *sl)
 {
 	int		fd;
 	char	*line;
@@ -21,7 +21,7 @@ char	*parse_map(char *map)
 	fd = open(map, O_RDONLY);
 	map_string = ft_calloc(1, 1);
 	if (!map_string)
-		return (NULL);
+		return ;
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -34,5 +34,5 @@ char	*parse_map(char *map)
 			break ;
 	}
 	close (fd);
-	return (map_string);
+	sl->grid = ft_split(map_string, '\n');
 }
