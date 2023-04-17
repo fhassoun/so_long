@@ -1,22 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   images.c                                           :+:      :+:    :+:   */
+/*   maps.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 10:44:29 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/17 11:53:15 by fhassoun         ###   ########.fr       */
+/*   Created: 2023/04/14 12:55:15 by fhassoun          #+#    #+#             */
+/*   Updated: 2023/04/17 13:15:39 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	load_textures(sl_t *sl)
+char	*parse_map(char *map)
 {
-	sl->textures.empty = mlx_load_png("./pics/grass.png");
-	sl->textures.wall = mlx_load_png("./pics/tree_small.png");
-	sl->textures.collectible = mlx_load_png("./pics/flower.png");
-	sl->textures.exit = mlx_load_png("./pics/beehive_small.png");
-	sl->textures.player = mlx_load_png("./pics/bee3.png");
+	int		fd;
+	char	*line;
+	char	*map_string;
+
+	fd = open(map, O_RDONLY);
+	map_string = ft_calloc(1, 1);
+	if (!map_string)
+		return (NULL);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line)
+		{
+			map_string = ft_strjoin(map_string, line);
+			free(line);
+		}
+		else
+			break ;
+	}
+	close (fd);
+	return (map_string);
 }

@@ -6,14 +6,15 @@
 #    By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 09:45:00 by fhassoun          #+#    #+#              #
-#    Updated: 2023/04/14 10:48:49 by fhassoun         ###   ########.fr        #
+#    Updated: 2023/04/14 12:55:47 by fhassoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
 SOURCES = 	main.c 					\
-			images.c
+			images.c				\
+			maps.c
 
 LIBFT_PATH = ./libft
 LIBFT_NAME = ft
