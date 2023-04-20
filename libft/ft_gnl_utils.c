@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 10:54:31 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/01/03 07:37:09 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:17:23 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-size_t	ft_strlen(const char *str)
+/* size_t	ft_strlen(const char *str)
 {
 	size_t	i;
 
@@ -84,7 +84,7 @@ size_t	ft_strlen(const char *str)
 		i++;
 	}
 	return (i);
-}
+} */
 
 char	*ft_gnl_strdup(char *src)
 {

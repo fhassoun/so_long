@@ -6,11 +6,26 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:55:15 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/17 14:27:47 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:18:50 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	get_dimensions(sl_t *sl)
+{
+	int	i;
+
+	i = 0;
+	sl->map_width = ft_strlen(sl->grid[0]);
+	sl->map_height = 0;
+	while (sl->grid[i])
+	{
+		sl->map_height++;
+		i++;	
+	}
+	ft_printf("width: %i\nheight: %i", sl->map_width,sl->map_height);
+}
 
 void	parse_map(char *map, sl_t *sl)
 {
@@ -35,4 +50,5 @@ void	parse_map(char *map, sl_t *sl)
 	}
 	close (fd);
 	sl->grid = ft_split(map_string, '\n');
+	get_dimensions(sl);
 }

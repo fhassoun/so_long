@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:31:16 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/17 14:27:04 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:12:45 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct sl_s
 	textures_t textures;
 	char	*map_string;
 	char	**grid;
+	int		map_width;
+	int		map_height;
 }	sl_t;
 
 void	load_textures(sl_t *sl);
