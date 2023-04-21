@@ -6,13 +6,13 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:55:15 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/20 11:18:50 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/21 13:56:14 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	get_dimensions(sl_t *sl)
+void	get_dimensions(t_sl *sl)
 {
 	int	i;
 
@@ -24,10 +24,10 @@ void	get_dimensions(sl_t *sl)
 		sl->map_height++;
 		i++;	
 	}
-	ft_printf("width: %i\nheight: %i", sl->map_width,sl->map_height);
+	// ft_printf("width: %i\nheight: %i\n", sl->map_width,sl->map_height);
 }
 
-void	parse_map(char *map, sl_t *sl)
+void	parse_map(char *map, t_sl *sl)
 {
 	int		fd;
 	char	*line;

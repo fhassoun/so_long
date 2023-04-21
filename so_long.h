@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:31:16 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/20 11:12:45 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/21 13:33:12 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,32 @@
 # define WIDTH 512
 # define HEIGHT 512
 
-typedef struct collect_s 
+/* typedef struct s_collect 
 {
 	mlx_image_t* collect;
 	int			x_coll;
 	int			y_coll;
-} collects_t;
+} t_collects; */
 
-typedef struct textures_s
+typedef struct	s_limits
+{
+	int	player;
+	int	collectables;
+	int	exits;
+}	t_limits;
+
+
+typedef struct	s_textures
 {
 	mlx_texture_t* empty;
 	mlx_texture_t* wall;
 	mlx_texture_t* collectible;
 	mlx_texture_t* exit;
 	mlx_texture_t* player;
-}	textures_t;
+}	t_textures;
 
 
-typedef struct img_s
+typedef struct	s_img
 {
 	mlx_image_t* empty;
 	mlx_image_t* wall;
@@ -50,21 +58,24 @@ typedef struct img_s
 	// char		*collectibles[1000];
 	mlx_image_t* exit;
 	mlx_image_t* player;
-}	img_t;
+}	t_img;
 
-typedef struct sl_s
+typedef struct	s_sl
 {
-	mlx_t	*mlx;
-	img_t	img;
-	textures_t textures;
-	char	*map_string;
-	char	**grid;
-	int		map_width;
-	int		map_height;
-}	sl_t;
+	mlx_t		*mlx;
+	t_img		img;
+	t_textures	textures;
+	char		*map_string;
+	char		**grid;
+	int			map_width;
+	int			map_height;
+	t_limits	limits;
+}	t_sl;
 
-void	load_textures(sl_t *sl);
-void	parse_map(char *map, sl_t *sl);
+void	load_textures(t_sl *sl);
+void	parse_map(char *map, t_sl *sl);
+int	check_border(t_sl *sl);
+int	check_limits(t_sl *sl);
 
 
 #endif

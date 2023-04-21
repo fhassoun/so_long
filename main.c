@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:25:01 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/17 14:31:49 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/21 13:55:10 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void ft_hook(void* param)
 {
-	sl_t *sl =  param;
+	t_sl *sl =  param;
 	mlx_t* mlx = sl->mlx;
 
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
@@ -37,7 +37,7 @@ static void error(void)
 	exit(EXIT_FAILURE);
 }
 
-void	init_game(sl_t *sl)
+void	init_game(t_sl *sl)
 {
 	load_textures(sl);
 	if (!(sl->mlx = mlx_init(WIDTH, HEIGHT, "Bzzzzzzzzzzzzzzzz!", true)))
@@ -56,7 +56,8 @@ void	init_game(sl_t *sl)
 
 int main(int argc, char* argv[])
 {
-	sl_t sl;
+	t_sl sl;
+	int test;
 	
 	if(argc != 2)
 	{
@@ -64,7 +65,11 @@ int main(int argc, char* argv[])
 		return (EXIT_SUCCESS);
 	}
 	parse_map(argv[1], &sl);
-
+	test = check_limits(&sl);
+	ft_printf("check_map: %i\n", test);
+	ft_printf("players: %i\n", sl.limits.player);
+	ft_printf("collectables: %i\n", sl.limits.collectables);
+	ft_printf("exits: %i\n", sl.limits.exits);
 
 	
 	init_game(&sl);
