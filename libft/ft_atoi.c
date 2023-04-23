@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:09:55 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/11 10:52:52 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/22 06:05:31 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ long int	ft_atoi(const char *str)
 	int			i;
 	int			sign;
 	long int	res;
-
 
 	i = 0;
 	sign = 1;

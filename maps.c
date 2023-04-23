@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:55:15 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/21 13:56:14 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/23 08:42:14 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	parse_map(char *map, t_sl *sl)
 	char	*map_string;
 
 	fd = open(map, O_RDONLY);
+	
 	map_string = ft_calloc(1, 1);
 	if (!map_string)
 		return ;
@@ -51,4 +52,5 @@ void	parse_map(char *map, t_sl *sl)
 	close (fd);
 	sl->grid = ft_split(map_string, '\n');
 	get_dimensions(sl);
+	free(map_string);
 }

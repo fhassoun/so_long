@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   images.c                                           :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 10:44:29 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/22 10:15:48 by fhassoun         ###   ########.fr       */
+/*   Created: 2023/04/23 08:06:39 by fhassoun          #+#    #+#             */
+/*   Updated: 2023/04/23 09:24:39 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	load_textures(t_sl *sl)
+int	check_map(t_sl *sl)
 {
-	// sl->textures.empty = mlx_load_png("./pics/grass.png");
-	// sl->textures.wall = mlx_load_png("./pics/tree_small.png");
-	// sl->textures.collectible = mlx_load_png("./pics/flower.png");
-	// sl->textures.exit = mlx_load_png("./pics/beehive_small.png");
-	sl->textures.player = mlx_load_png("./pics/bee3.png");
+	return (check_border(sl) +
+		check_content(sl) +
+		check_limits(sl) +
+		check_rect(sl));
+	// int	a;
+	// int	b;
+	// int	c;
+	// int	d;
+	// int	e;
+
+	// a = check_border(sl);
+	// b = check_content(sl);
+	// c = check_limits(sl);
+	// d = check_extension(sl);
+	// e = check_rect(sl);
+	// if ((a + b + c + d + e == 0))
 }

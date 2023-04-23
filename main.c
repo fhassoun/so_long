@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:25:01 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/21 13:55:10 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/23 09:30:48 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,14 @@ void ft_hook(void* param)
 	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
 		sl->img.player ->instances[0].x += 5;
 }
-
-static void error(void)
+void error_message(char *error_message)
 {
-	ft_printf("&s\n", mlx_strerror(mlx_errno));
+	ft_printf("Error\n%s\n", error_message);
+}
+
+void error(void)
+{
+	ft_printf(mlx_strerror(mlx_errno));
 	exit(EXIT_FAILURE);
 }
 
@@ -57,19 +61,19 @@ void	init_game(t_sl *sl)
 int main(int argc, char* argv[])
 {
 	t_sl sl;
-	int test;
 	
 	if(argc != 2)
 	{
 		ft_printf("%s\n", "Usage: ./so_long path/to/mapname.ber");
 		return (EXIT_SUCCESS);
 	}
+	check_extension(argv[1]);
 	parse_map(argv[1], &sl);
-	test = check_limits(&sl);
-	ft_printf("check_map: %i\n", test);
-	ft_printf("players: %i\n", sl.limits.player);
-	ft_printf("collectables: %i\n", sl.limits.collectables);
-	ft_printf("exits: %i\n", sl.limits.exits);
+	if (check_map(&sl) != 0 || check_path())
+		exit(EXIT_FAILURE);
+	// ft_printf("players: %i\n", sl.limits.player);
+	// ft_printf("collectables: %i\n", sl.limits.collectables);
+	// ft_printf("exits: %i\n", sl.limits.exits);
 
 	
 	init_game(&sl);

@@ -6,7 +6,7 @@
 #    By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 09:45:00 by fhassoun          #+#    #+#              #
-#    Updated: 2023/04/21 13:00:40 by fhassoun         ###   ########.fr        #
+#    Updated: 2023/04/23 08:26:07 by fhassoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME = so_long
 SOURCES = 	main.c 					\
 			images.c				\
 			maps.c					\
-			map_checker.c
+			map_checker.c			\
+			map_utils.c
 
 LIBFT_PATH = ./libft
 LIBFT_NAME = ft
@@ -28,9 +29,15 @@ MLX = $(MLX_PATH)/lib$(MLX_NAME).a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 #LDFLAGS for linux
-LDFLAGS = -L$(LIBFT_PATH) -l$(LIBFT_NAME) -L$(MLX_PATH) -l$(MLX_NAME) -lglfw -ldl -lm -pthread
+#LDFLAGS = -L$(LIBFT_PATH) -l$(LIBFT_NAME) -L$(MLX_PATH) -l$(MLX_NAME) -lglfw -ldl -lm -pthread
 #LDFLAGS for MacOS
 #LDFLAGS = -L$(LIBFT_PATH) -l$(LIBFT_NAME) -L$(MLX_PATH) -l$(MLX_NAME) -lglfw -ldl -lm -pthread -L"/opt/homebrew/Cellar/glfw/3.3.8/lib/"
+
+ifeq ($(shell uname), Linux)
+	LDFLAGS = -L$(LIBFT_PATH) -l$(LIBFT_NAME) -L$(MLX_PATH) -l$(MLX_NAME) -lglfw -ldl -lm -pthread
+else
+	LDFLAGS = -L$(LIBFT_PATH) -l$(LIBFT_NAME) -L$(MLX_PATH) -l$(MLX_NAME) -lglfw -ldl -lm -pthread -L"/opt/homebrew/Cellar/glfw/3.3.8/lib/"
+endif
 
 OBJECTS = $(SOURCES:.c=.o)
 

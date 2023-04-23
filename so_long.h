@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:31:16 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/21 13:33:12 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/23 09:29:14 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@
 	int			y_coll;
 } t_collects; */
 
-typedef struct	s_limits
+typedef struct s_limits
 {
 	int	player;
 	int	collectables;
 	int	exits;
 }	t_limits;
-
 
 typedef struct	s_textures
 {
@@ -65,6 +64,7 @@ typedef struct	s_sl
 	mlx_t		*mlx;
 	t_img		img;
 	t_textures	textures;
+	char		*filename;
 	char		*map_string;
 	char		**grid;
 	int			map_width;
@@ -72,10 +72,17 @@ typedef struct	s_sl
 	t_limits	limits;
 }	t_sl;
 
-void	load_textures(t_sl *sl);
-void	parse_map(char *map, t_sl *sl);
-int	check_border(t_sl *sl);
-int	check_limits(t_sl *sl);
+void		error();
+void		error_message(char *message);
+void		load_textures(t_sl *sl);
+void		parse_map(char *map, t_sl *sl);
+int			check_map(t_sl *sl);
+int			check_border(t_sl *sl);
+int			check_extension(char *file);
+int			check_rect(t_sl *sl);
+int			check_limits(t_sl *sl);
+int			check_content(t_sl *sl);
+int			check_path(t_sl *sl, size_t i, size_t j);
 
 
 #endif
