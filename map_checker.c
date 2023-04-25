@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 12:47:31 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/23 09:25:03 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/24 10:34:58 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,11 @@ int	check_limits(t_sl *sl)
 			if (sl->grid[j][i] == 'E')
 				sl->limits.exits++;
 			if (sl->grid[j][i] == 'P')
+			{
 				sl->limits.player++;
+				sl->ppos.x = i;
+				sl->ppos.y = j;
+			}
 			if (sl->grid[j][i] == 'C')
 				sl->limits.collectables++;
 		}

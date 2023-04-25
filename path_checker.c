@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 10:33:15 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/23 09:29:07 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/24 10:35:49 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	free_grid(char **grid, size_t height)
 	free(grid);
 }
 
-int	flood_fill(t_sl *tmp, size_t y, size_t x)
+int	flood_fill(t_sl *tmp, int y, int x)
 {
 
 	if (tmp->grid[y][x] == '1')
@@ -49,7 +49,7 @@ int	flood_fill(t_sl *tmp, size_t y, size_t x)
 	return (0);
 }
 
-int	check_path(t_sl *sl, size_t i, size_t j)
+int	check_path(t_sl *sl)
 {
 	t_sl	tmp;
 	int		k;
@@ -67,7 +67,7 @@ int	check_path(t_sl *sl, size_t i, size_t j)
 		tmp.grid[k] = ft_strdup(sl->grid[k]);
 		k++;
 	}
-	flood_fill(&tmp, i, j);
+	flood_fill(&tmp, sl->ppos.x, sl->ppos.y);
 	if (!(tmp.limits.exits == 1 && tmp.limits.collectables == 0))
 	{
 		error_message("No valid path available");

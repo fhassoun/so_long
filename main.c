@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:25:01 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/23 09:30:48 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/24 10:31:14 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
 	}
 	check_extension(argv[1]);
 	parse_map(argv[1], &sl);
-	if (check_map(&sl) != 0 || check_path())
+	if (check_map(&sl) != 0 || check_path(&sl) != 0)
 		exit(EXIT_FAILURE);
 	// ft_printf("players: %i\n", sl.limits.player);
 	// ft_printf("collectables: %i\n", sl.limits.collectables);

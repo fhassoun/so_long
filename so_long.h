@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:31:16 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/23 09:29:14 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/24 11:21:48 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 
 # define WIDTH 512
 # define HEIGHT 512
+# define IMG_W 50
+# define IMG_H 50
 
 /* typedef struct s_collect 
 {
@@ -38,6 +40,12 @@ typedef struct s_limits
 	int	collectables;
 	int	exits;
 }	t_limits;
+
+typedef struct s_playerposition
+{
+	int	x;
+	int	y;
+}	t_playerposition;
 
 typedef struct	s_textures
 {
@@ -61,15 +69,16 @@ typedef struct	s_img
 
 typedef struct	s_sl
 {
-	mlx_t		*mlx;
-	t_img		img;
-	t_textures	textures;
-	char		*filename;
-	char		*map_string;
-	char		**grid;
-	int			map_width;
-	int			map_height;
-	t_limits	limits;
+	mlx_t				*mlx;
+	t_img				img;
+	t_textures			textures;
+	char				*filename;
+	char				*map_string;
+	char				**grid;
+	int					map_width;
+	int					map_height;
+	t_limits			limits;
+	t_playerposition	ppos;
 }	t_sl;
 
 void		error();
@@ -82,7 +91,7 @@ int			check_extension(char *file);
 int			check_rect(t_sl *sl);
 int			check_limits(t_sl *sl);
 int			check_content(t_sl *sl);
-int			check_path(t_sl *sl, size_t i, size_t j);
+int			check_path(t_sl *sl);
 
 
 #endif
