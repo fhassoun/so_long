@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:31:16 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/24 11:21:48 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/28 12:56:58 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 
 # define WIDTH 512
 # define HEIGHT 512
-# define IMG_W 50
-# define IMG_H 50
+# define IMG 50
+
 
 /* typedef struct s_collect 
 {
@@ -49,22 +49,22 @@ typedef struct s_playerposition
 
 typedef struct	s_textures
 {
-	mlx_texture_t* empty;
-	mlx_texture_t* wall;
-	mlx_texture_t* collectible;
-	mlx_texture_t* exit;
-	mlx_texture_t* player;
+	mlx_texture_t	*empty;
+	mlx_texture_t	*wall;
+	mlx_texture_t	*collectible;
+	mlx_texture_t	*exit;
+	mlx_texture_t	*player;
 }	t_textures;
 
 
 typedef struct	s_img
 {
-	mlx_image_t* empty;
-	mlx_image_t* wall;
-	mlx_image_t* collectible;
+	mlx_image_t *empty;
+	mlx_image_t *wall;
+	mlx_image_t *collectible;
 	// char		*collectibles[1000];
-	mlx_image_t* exit;
-	mlx_image_t* player;
+	mlx_image_t *exit;
+	mlx_image_t	*player;
 }	t_img;
 
 typedef struct	s_sl
@@ -92,6 +92,8 @@ int			check_rect(t_sl *sl);
 int			check_limits(t_sl *sl);
 int			check_content(t_sl *sl);
 int			check_path(t_sl *sl);
+void		fill_background(t_sl *sl);
+void load_grass_texture(t_sl *sl);
 
 
 #endif

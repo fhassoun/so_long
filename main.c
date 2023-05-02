@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:25:01 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/24 10:31:14 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:05:56 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,15 @@ void error(void)
 	exit(EXIT_FAILURE);
 }
 
+
 void	init_game(t_sl *sl)
 {
+	if (!(sl->mlx = mlx_init(sl->map_width * IMG, sl->map_height * IMG, "Bzzzzzzzzzzzzzzzz!", true)))
+		error();
 	load_textures(sl);
-	if (!(sl->mlx = mlx_init(WIDTH, HEIGHT, "Bzzzzzzzzzzzzzzzz!", true)))
-		error();
-	if (!(sl->img.player = mlx_texture_to_image(sl->mlx, sl->textures.player)))
-	{
-		mlx_close_window(sl->mlx);
-		error();
-	}
+	
+
+	fill_background(sl);
 	if (mlx_image_to_window(sl->mlx, sl->img.player , 0, 0) == -1)
 	{
 		mlx_close_window(sl->mlx);
