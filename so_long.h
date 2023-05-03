@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:31:16 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/28 12:56:58 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/05/03 12:12:27 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_limits
 {
 	int	player;
 	int	collectables;
+	int	collected;
 	int	exits;
 }	t_limits;
 
@@ -77,6 +78,7 @@ typedef struct	s_sl
 	char				**grid;
 	int					map_width;
 	int					map_height;
+	int					moves;
 	t_limits			limits;
 	t_playerposition	ppos;
 }	t_sl;
@@ -92,8 +94,9 @@ int			check_rect(t_sl *sl);
 int			check_limits(t_sl *sl);
 int			check_content(t_sl *sl);
 int			check_path(t_sl *sl);
+void	load_background(t_sl *sl);
 void		fill_background(t_sl *sl);
-void load_grass_texture(t_sl *sl);
+void	create_map(t_sl *sl);
 
 
 #endif
