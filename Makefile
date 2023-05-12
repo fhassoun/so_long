@@ -6,7 +6,7 @@
 #    By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 09:45:00 by fhassoun          #+#    #+#              #
-#    Updated: 2023/05/03 10:40:43 by fhassoun         ###   ########.fr        #
+#    Updated: 2023/05/12 12:39:20 by fhassoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ SOURCES = 	main.c 					\
 			map_checker.c			\
 			map_utils.c				\
 			path_checker.c			\
-			load_map.c
+			load_map.c				\
+			move.c					\
+			so_long_utils.c			
 
 LIBFT_PATH = ./libft
 LIBFT_NAME = ft

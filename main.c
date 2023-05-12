@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:25:01 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/05/03 10:51:07 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:59:57 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,29 @@
 
 // static mlx_image_t* image;
 
-void ft_hook(void* param)
+void my_hook(mlx_key_data_t keydata,void* param)
 {
 	t_sl *sl =  param;
 	mlx_t* mlx = sl->mlx;
 
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
-	if (mlx_is_key_down(mlx, MLX_KEY_UP))
-		sl->img.player ->instances[0].y -= 5;
-	if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
-		sl->img.player ->instances[0].y += 5;
-	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
-		sl->img.player ->instances[0].x -= 5;
-	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-		sl->img.player ->instances[0].x += 5;
+	// if (mlx_is_key_down(mlx, MLX_KEY_UP))
+		// sl->img.player ->instances[0].y -= 5;
+	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
+		move_up(sl);
+	// if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
+		// sl->img.player ->instances[0].y += 5;
+	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
+		move_down(sl);
+	// if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
+		// sl->img.player ->instances[0].x -= 5;
+	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+		move_left(sl);
+	// if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
+		// sl->img.player ->instances[0].x += 5;
+	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+		move_right(sl);
 }
 
 void error_message(char *error_message)
@@ -59,6 +67,19 @@ void	init_game(t_sl *sl)
 	} */
 }
 
+void cleanup(t_sl *sl)
+{
+	int	i;
+
+	i = 0;
+	while (i < sl->map_height )
+	{
+		free(sl->grid[i]);
+		i++;
+	}
+	free(sl->grid);
+}
+
 int main(int argc, char* argv[])
 {
 	t_sl sl;
@@ -75,11 +96,14 @@ int main(int argc, char* argv[])
 
 	
 	init_game(&sl);
-	
+	// ft_printf("Game Start\nx: %i	y: %i\n\n\n", sl.ppos.x, sl.ppos.y);
 
-	mlx_loop_hook(sl.mlx, ft_hook, &sl);
+	
+	mlx_key_hook(sl.mlx, my_hook, &sl);
 	mlx_loop(sl.mlx);
 	mlx_terminate(sl.mlx);
+	ft_printf("%s\n", "cleaning up!");
+	cleanup(&sl);
 	return (EXIT_SUCCESS);
 }
 

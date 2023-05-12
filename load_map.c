@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:30:19 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/05/03 12:30:19 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:15:00 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	create_map(t_sl *sl)
 	int		y;
 
 	y = 0;
+	sl->moves = 0;
+	sl->limits.collected = 0;
 	while (y < sl->map_height)
 	{
 		x = 0;

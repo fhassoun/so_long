@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:31:16 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/05/03 12:12:27 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:56:41 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,9 @@
 # define IMG 50
 
 
-/* typedef struct s_collect 
-{
-	mlx_image_t* collect;
-	int			x_coll;
-	int			y_coll;
-} t_collects; */
+typedef struct s_test {
+	xpm_t *test;
+}	t_test;
 
 typedef struct s_limits
 {
@@ -44,13 +41,13 @@ typedef struct s_limits
 
 typedef struct s_playerposition
 {
-	int	x;
-	int	y;
+	size_t	x;
+	size_t	y;
 }	t_playerposition;
 
 typedef struct	s_textures
 {
-	mlx_texture_t	*empty;
+	xpm_t			*empty;
 	mlx_texture_t	*wall;
 	mlx_texture_t	*collectible;
 	mlx_texture_t	*exit;
@@ -81,6 +78,7 @@ typedef struct	s_sl
 	int					moves;
 	t_limits			limits;
 	t_playerposition	ppos;
+	t_test 				test;
 }	t_sl;
 
 void		error();
@@ -97,6 +95,11 @@ int			check_path(t_sl *sl);
 void	load_background(t_sl *sl);
 void		fill_background(t_sl *sl);
 void	create_map(t_sl *sl);
+void	move_up(t_sl *sl);
+void	move_down(t_sl *sl);
+void	move_right(t_sl *sl);
+void	move_left(t_sl *sl);
+void	game_over(t_sl *sl);
 
 
 #endif
