@@ -6,12 +6,11 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 08:25:42 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/05/12 15:35:34 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/05/15 12:27:44 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 void	delete_collectible(t_sl *sl, int y, int x)
 {
@@ -37,7 +36,6 @@ void	move_up(t_sl *sl)
 	{
 		if (sl->grid[sl->ppos.y - 1][sl->ppos.x] == 'C')
 		{
-	
 			delete_collectible(sl, sl->ppos.y - 1, sl->ppos.x);
 			sl->grid[sl->ppos.y - 1][sl->ppos.x] = '0';
 			sl->limits.collected++;
@@ -45,11 +43,8 @@ void	move_up(t_sl *sl)
 		sl->ppos.y--;
 		sl->img.player ->instances[0].y -= 1 * IMG;
 		sl->moves++;
-		// ft_printf("x: %i	y: %i\n", sl->ppos.x, sl->ppos.y);
 		ft_printf("Your Bee made %i moves...\n", sl->moves);
-
 	}
-	
 }
 
 void	move_down(t_sl *sl)
@@ -65,11 +60,8 @@ void	move_down(t_sl *sl)
 		sl->ppos.y++;
 		sl->img.player->instances[0].y += 1 * IMG;
 		sl->moves++;
-		// ft_printf("x: %i	y: %i\n", sl->ppos.x, sl->ppos.y);
 		ft_printf("Your Bee made %i moves...\n", sl->moves);
-
 	}
-	
 }
 
 void	move_right(t_sl *sl)
@@ -85,18 +77,14 @@ void	move_right(t_sl *sl)
 		sl->ppos.x++;
 		sl->img.player->instances[0].x += 1 * IMG;
 		sl->moves++;
-		// ft_printf("x: %i	y: %i\n", sl->ppos.x, sl->ppos.y);
 		ft_printf("Your Bee made %i moves...\n", sl->moves);
-
 	}
-	
 }
 
 void	move_left(t_sl *sl)
 {
 	if (sl->grid[sl->ppos.y][sl->ppos.x - 1] != '1')
 	{
-		ft_printf("collectabels: %i		collected: %i\n", sl->limits.collectables,sl->limits.collected);
 		if (sl->grid[sl->ppos.y][sl->ppos.x - 1] == 'C')
 		{
 			delete_collectible(sl, sl->ppos.y, sl->ppos.x - 1);
@@ -105,15 +93,13 @@ void	move_left(t_sl *sl)
 		}
 		if (sl->grid[sl->ppos.y][sl->ppos.x - 1] == 'E' &&
 			sl->limits.collected == sl->limits.collectables)
-			{
-				game_over(sl);
-				return ;
-			}
+		{
+			game_over(sl);
+			return ;
+		}
 		sl->ppos.x--;
 		sl->img.player ->instances[0].x -= 1 * IMG;
 		sl->moves++;
-		// ft_printf("x: %i	y: %i\n", sl->ppos.x, sl->ppos.y);
 		ft_printf("Your Bee made %i moves...\n", sl->moves);
 	}
-	
 }

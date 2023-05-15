@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:31:16 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/05/12 12:56:41 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/05/15 15:06:18 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ typedef struct	s_sl
 
 void		error();
 void		error_message(char *message);
-void		load_textures(t_sl *sl);
-void		parse_map(char *map, t_sl *sl);
+void		cleanup(t_sl *sl);
+int		parse_map(char *map, t_sl *sl);
 int			check_map(t_sl *sl);
 int			check_border(t_sl *sl);
 int			check_extension(char *file);
@@ -92,14 +92,20 @@ int			check_rect(t_sl *sl);
 int			check_limits(t_sl *sl);
 int			check_content(t_sl *sl);
 int			check_path(t_sl *sl);
-void	load_background(t_sl *sl);
+void		load_player(t_sl *sl);
+void 		load_empty(t_sl *sl);
+void		load_exit(t_sl *sl);
+void		load_wall(t_sl *sl);
+void		load_collectible(t_sl *sl);
+void		load_textures(t_sl *sl);
+void		load_background(t_sl *sl);
 void		fill_background(t_sl *sl);
-void	create_map(t_sl *sl);
-void	move_up(t_sl *sl);
-void	move_down(t_sl *sl);
-void	move_right(t_sl *sl);
-void	move_left(t_sl *sl);
-void	game_over(t_sl *sl);
+void		create_map(t_sl *sl);
+void		move_up(t_sl *sl);
+void		move_down(t_sl *sl);
+void		move_right(t_sl *sl);
+void		move_left(t_sl *sl);
+void		game_over(t_sl *sl);
 
 
 #endif

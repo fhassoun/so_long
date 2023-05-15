@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:30:19 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/05/12 11:15:00 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/05/15 12:34:00 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,16 @@ void	image_select(t_sl *sl, int y, int x)
 {
 	if (sl->grid[y][x] == 'P')
 	{
-		mlx_image_to_window(sl->mlx, sl->img.player,
-				x * IMG, y * IMG);
+		mlx_image_to_window(sl->mlx, sl->img.player, x * IMG, y * IMG);
 		sl->ppos.x = x;
 		sl->ppos.y = y;
 	}
-
 	if (sl->grid[y][x] == 'C')
-		mlx_image_to_window(sl->mlx, sl->img.collectible,
-				x * IMG, y * IMG);
-	
+		mlx_image_to_window(sl->mlx, sl->img.collectible, x * IMG, y * IMG);
 	if (sl->grid[y][x] == 'E')
-		mlx_image_to_window(sl->mlx, sl->img.exit,
-				x * IMG, y * IMG);
-
+		mlx_image_to_window(sl->mlx, sl->img.exit, x * IMG, y * IMG);
 	if (sl->grid[y][x] == '1')
-		mlx_image_to_window(sl->mlx, sl->img.wall,
-				x * IMG, y * IMG);
-
-
+		mlx_image_to_window(sl->mlx, sl->img.wall, x * IMG, y * IMG);
 }
 
 void	create_map(t_sl *sl)
