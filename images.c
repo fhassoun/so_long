@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:44:29 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/05/15 14:04:31 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/05/16 10:49:46 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void load_empty(t_sl *sl)
 	mlx_delete_texture (sl->textures.empty);
 } */
 
-void load_empty(t_sl *sl)
+void	load_empty(t_sl *sl)
 {
 	xpm_t	*test;
 

@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 08:25:42 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/05/15 12:27:44 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:28:09 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ void	move_up(t_sl *sl)
 			sl->grid[sl->ppos.y - 1][sl->ppos.x] = '0';
 			sl->limits.collected++;
 		}
+		if (sl->grid[sl->ppos.y - 1][sl->ppos.x] == 'E' &&
+			sl->limits.collected == sl->limits.collectables)
+		{
+			game_over(sl);
+			return ;
+		}
 		sl->ppos.y--;
 		sl->img.player ->instances[0].y -= 1 * IMG;
 		sl->moves++;
@@ -57,6 +63,12 @@ void	move_down(t_sl *sl)
 			sl->grid[sl->ppos.y + 1][sl->ppos.x] = '0';
 			sl->limits.collected++;
 		}
+		if (sl->grid[sl->ppos.y + 1][sl->ppos.x] == 'E' &&
+			sl->limits.collected == sl->limits.collectables)
+		{
+			game_over(sl);
+			return ;
+		}
 		sl->ppos.y++;
 		sl->img.player->instances[0].y += 1 * IMG;
 		sl->moves++;
@@ -73,6 +85,12 @@ void	move_right(t_sl *sl)
 			delete_collectible(sl, sl->ppos.y, sl->ppos.x + 1);
 			sl->grid[sl->ppos.y][sl->ppos.x + 1] = '0';
 			sl->limits.collected++;
+		}
+		if (sl->grid[sl->ppos.y][sl->ppos.x + 1] == 'E' &&
+			sl->limits.collected == sl->limits.collectables)
+		{
+			game_over(sl);
+			return ;
 		}
 		sl->ppos.x++;
 		sl->img.player->instances[0].x += 1 * IMG;

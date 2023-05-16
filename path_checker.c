@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 10:33:15 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/04/24 10:35:49 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:14:56 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	free_grid(char **grid, size_t height)
 
 int	flood_fill(t_sl *tmp, int y, int x)
 {
-
 	if (tmp->grid[y][x] == '1')
 		return (0);
 	if (tmp->grid[y][x] == 'C')

@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:31:16 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/05/15 15:06:18 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:19:16 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,14 @@
 # include <math.h>
 # include "libft/libft.h"
 # include "MLX42/include/MLX42/MLX42.h"
-//# include "mlx/mlx.h"
 
 # define WIDTH 512
 # define HEIGHT 512
 # define IMG 50
 
-
 typedef struct s_test {
-	xpm_t *test;
-}	t_test;
+	xpm_t	*test;
+}t_test;
 
 typedef struct s_limits
 {
@@ -45,7 +43,7 @@ typedef struct s_playerposition
 	size_t	y;
 }	t_playerposition;
 
-typedef struct	s_textures
+typedef struct s_textures
 {
 	xpm_t			*empty;
 	mlx_texture_t	*wall;
@@ -54,18 +52,16 @@ typedef struct	s_textures
 	mlx_texture_t	*player;
 }	t_textures;
 
-
-typedef struct	s_img
+typedef struct s_img
 {
-	mlx_image_t *empty;
-	mlx_image_t *wall;
-	mlx_image_t *collectible;
-	// char		*collectibles[1000];
-	mlx_image_t *exit;
+	mlx_image_t	*empty;
+	mlx_image_t	*wall;
+	mlx_image_t	*collectible;
+	mlx_image_t	*exit;
 	mlx_image_t	*player;
 }	t_img;
 
-typedef struct	s_sl
+typedef struct s_sl
 {
 	mlx_t				*mlx;
 	t_img				img;
@@ -78,13 +74,13 @@ typedef struct	s_sl
 	int					moves;
 	t_limits			limits;
 	t_playerposition	ppos;
-	t_test 				test;
+	t_test				test;
 }	t_sl;
 
-void		error();
+void		error(void);
 void		error_message(char *message);
 void		cleanup(t_sl *sl);
-int		parse_map(char *map, t_sl *sl);
+int			parse_map(char *map, t_sl *sl);
 int			check_map(t_sl *sl);
 int			check_border(t_sl *sl);
 int			check_extension(char *file);
@@ -93,7 +89,7 @@ int			check_limits(t_sl *sl);
 int			check_content(t_sl *sl);
 int			check_path(t_sl *sl);
 void		load_player(t_sl *sl);
-void 		load_empty(t_sl *sl);
+void		load_empty(t_sl *sl);
 void		load_exit(t_sl *sl);
 void		load_wall(t_sl *sl);
 void		load_collectible(t_sl *sl);
@@ -106,6 +102,6 @@ void		move_down(t_sl *sl);
 void		move_right(t_sl *sl);
 void		move_left(t_sl *sl);
 void		game_over(t_sl *sl);
-
+void		too_many_lines(t_sl *sl);
 
 #endif

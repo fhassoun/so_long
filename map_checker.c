@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 12:47:31 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/05/15 13:58:12 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:00:13 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_border(t_sl *sl)
 				|| (sl->grid[j][0] != '1')
 				|| (sl->grid[j][sl->map_width - 1] != '1'))
 			{
-						error_message("Invalid Map. Not surrounded by borders!");
+				error_message("Invalid Map. Not surrounded by borders!");
 				return (1);
 			}
 		}
@@ -54,39 +54,17 @@ int	check_content(t_sl *sl)
 			}
 		}
 	}
-		return (0);
+	return (0);
 }
 
 int	check_limits(t_sl *sl)
 {
-	int	i;
-	int	j;
-
-	sl->limits.collectables = 0;
-	sl->limits.player = 0;
-	sl->limits.exits = 0;
-	j = -1;
-	while (++j < sl->map_height)
-	{
-		i = -1;
-		while (++i < sl->map_width)
-		{
-			if (sl->grid[j][i] == 'E')
-				sl->limits.exits++;
-			if (sl->grid[j][i] == 'P')
-			{
-				sl->limits.player++;
-				sl->ppos.x = i;
-				sl->ppos.y = j;
-			}
-			if (sl->grid[j][i] == 'C')
-				sl->limits.collectables++;
-		}
-	}
+	too_many_lines(sl);
 	if (sl->limits.player != 1 || sl->limits.exits != 1
 		|| sl->limits.collectables < 1)
 	{
-		error_message("Map can only contain 1 Player, only 1 Exit and at least 1 Collectable!");
+		error_message("Map can only contain 1 Player, only 1 Exit \
+			and at least 1 Collectable!");
 		return (1);
 	}
 	return (0);
@@ -107,7 +85,7 @@ int	check_extension(char *file)
 
 int	check_rect(t_sl *sl)
 {
-	int	i;
+	int		i;
 	size_t	len;
 
 	i = 0;
@@ -123,4 +101,3 @@ int	check_rect(t_sl *sl)
 	}
 	return (0);
 }
-

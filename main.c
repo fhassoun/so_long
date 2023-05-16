@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:25:01 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/05/15 15:06:02 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/05/16 10:50:59 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	cleanup(t_sl *sl)
 		i++;
 	}
 	free(sl->grid);
+	free(sl->map_string);
 }
 
 int	main(int argc, char *argv[])
@@ -67,9 +68,11 @@ int	main(int argc, char *argv[])
 		return (EXIT_SUCCESS);
 	}
 	check_extension(argv[1]);
-	// parse_map(argv[1], &sl);
-	if (parse_map(argv[1], &sl) != 0 || check_map(&sl) != 0 || check_path(&sl) != 0)
+	if (parse_map(argv[1], &sl) != 0
+		|| check_map(&sl) != 0 || check_path(&sl) != 0)
+	{
 		exit(EXIT_FAILURE);
+	}
 	init_game(&sl);
 	mlx_key_hook(sl.mlx, my_hook, &sl);
 	mlx_loop(sl.mlx);

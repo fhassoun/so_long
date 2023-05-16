@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:55:15 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/05/15 15:06:34 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:29:06 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,58 +22,67 @@ void	get_dimensions(t_sl *sl)
 	while (sl->grid[i])
 	{
 		sl->map_height++;
-		i++;	
+		i++;
 	}
-	// ft_printf("width: %i\nheight: %i\n", sl->map_width,sl->map_height);
 }
 
 int	check_newline(char *map_string)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
-	while ( map_string[i] != '\0')
+	while (map_string[i] != '\0')
 	{
 		if (map_string[i] == '\n' && map_string[i + 1] == '\n')
 		{
-			
 			error_message("Not a valid Map!");
-			free(map_string);
-			//exit (1);
 			return (1);
-		} 
+		}
 		i++;
 	}
 	return (0);
+}
+
+void	too_long_again(t_sl *sl, char *line, int fd)
+{
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line)
+		{
+			sl->map_string = ft_gnl_strjoin(sl->map_string, line);
+			free(line);
+		}
+		else
+			break ;
+	}
 }
 
 int	parse_map(char *map, t_sl *sl)
 {
 	int		fd;
 	char	*line;
-	char	*map_string;
 
 	fd = open(map, O_RDONLY);
-	map_string = ft_calloc(1, 1);
-	if (!map_string)
-		return (1);
-	while (1)
+	if (fd < 0)
 	{
-		line = get_next_line(fd);
-		if (line)
-		{
-			map_string = ft_strjoin(map_string, line);
-			free(line);
-		}
-		else
-			break ;
-	}
-	close (fd);
-	if (check_newline(map_string) != 0)
+		error_message("Could not open Map!");
 		return (1);
-	ft_printf("hallo?");
-	sl->grid = ft_split(map_string, '\n');
+	}
+	sl->map_string = ft_calloc(1, 1);
+	if (!sl->map_string)
+		return (1);
+	line = ft_calloc(1, 1);
+	too_long_again(sl, line, fd);
+	close (fd);
+	if (check_newline(sl->map_string) != 0)
+	{
+		free(line);
+		free(sl->map_string);
+		return (1);
+	}
+	sl->grid = ft_split(sl->map_string, '\n');
+	free(line);
 	get_dimensions(sl);
-	free(map_string);
 	return (0);
 }
