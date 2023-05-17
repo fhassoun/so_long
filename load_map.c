@@ -6,7 +6,7 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:30:19 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/05/15 12:34:00 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/05/17 13:42:03 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	load_background(t_sl *sl)
 		y++;
 	}
 }
+
 
 void	image_select(t_sl *sl, int y, int x)
 {
