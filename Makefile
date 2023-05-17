@@ -6,9 +6,11 @@
 #    By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 09:45:00 by fhassoun          #+#    #+#              #
-#    Updated: 2023/05/16 09:45:25 by fhassoun         ###   ########.fr        #
+#    Updated: 2023/05/17 12:02:02 by fhassoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+
 
 NAME = so_long
 
@@ -45,7 +47,7 @@ endif
 
 OBJECTS = $(SOURCES:.c=.o)
 
-all: $(NAME)
+all: libmlx $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@ $(LIBFT) $(MLX)
@@ -53,10 +55,20 @@ $(NAME): $(LIBFT) $(MLX) $(OBJECTS)
 $(LIBFT): $(LIBFT_PATH)/*.c
 	make -C $(LIBFT_PATH)
 
-$(MLX): $(MLX_PATH)/Makefile
+$(MLX): 
 	make -C $(MLX_PATH)
 
 
+libmlx:
+	@if git submodule status | egrep -q '^[-]|^[+]' ; then \
+            echo "INFO: Need to reinitialize git submodules"; \
+            git submodule update --init; \
+    fi
+	@if [ ! -d "./MLX42/build" ]; then \
+		cmake ./MLX42 -B ./MLX42/build ; \
+	fi
+
+	
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -70,4 +82,4 @@ fclean: clean
 
 re: fclean all clean
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re 

@@ -1,0 +1,3 @@
+/nfs/homes/fhassoun/dev_area/core/my_github/so_long_git/MLX42build/CMakeFiles/mlx42.dir
+/nfs/homes/fhassoun/dev_area/core/my_github/so_long_git/MLX42build/CMakeFiles/edit_cache.dir
+/nfs/homes/fhassoun/dev_area/core/my_github/so_long_git/MLX42build/CMakeFiles/rebuild_cache.dir
