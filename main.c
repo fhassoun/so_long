@@ -6,13 +6,11 @@
 /*   By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:25:01 by fhassoun          #+#    #+#             */
-/*   Updated: 2023/05/16 10:50:59 by fhassoun         ###   ########.fr       */
+/*   Updated: 2023/05/18 10:40:47 by fhassoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// static mlx_image_t* image;
 
 void	my_hook(mlx_key_data_t keydata, void *param)
 {
@@ -65,7 +63,7 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 	{
 		ft_printf("%s\n", "Usage: ./so_long path/to/mapname.ber");
-		return (EXIT_SUCCESS);
+		return (EXIT_FAILURE);
 	}
 	check_extension(argv[1]);
 	if (parse_map(argv[1], &sl) != 0

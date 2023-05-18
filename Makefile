@@ -6,7 +6,7 @@
 #    By: fhassoun <fhassoun@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 09:45:00 by fhassoun          #+#    #+#              #
-#    Updated: 2023/05/17 13:51:15 by fhassoun         ###   ########.fr        #
+#    Updated: 2023/05/18 10:42:08 by fhassoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,4 +82,4 @@ fclean: clean
 
 re: fclean all clean
 
-.PHONY: all clean fclean re 
+.PHONY: all clean fclean re libmlx
